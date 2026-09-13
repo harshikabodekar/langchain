@@ -1,0 +1,25 @@
+# to connect two runnables sequentially
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from dotenv import load_dotenv
+from langchain_core.runnables import RunnableSequence
+
+load_dotenv()
+prompt1=PromptTemplate(
+    template='write a joke about {topic}',
+    input_variables=['topic']
+)
+model=ChatOpenAI(model='gpt-3.5-turbo')
+parser=StrOutputParser()
+
+prompt2=PromptTemplate(
+    template='Explain the following joke {text}',
+    input_variables=['text']
+
+)
+
+chain=RunnableSequence([prompt1, model, parser,prompt2,model,parser])
+
+print(chain.invoke({'topic':' nature'}))
+
