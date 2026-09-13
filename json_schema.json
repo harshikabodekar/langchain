@@ -1,0 +1,31 @@
+ 
+{
+    "title":"Review",
+    "description":"A review of a product or movie",
+    "type":"object",
+    "properties":{
+        "key_themes":{
+            "type":"array",
+            "items":{
+                "type":"string"
+            }
+        },
+        "summery":{
+            "type":"string"
+        },
+        "sentiment":{
+            "type":"string",
+            "enum":["pros","cons"]
+        },
+        "pros":{
+            "type":"string"
+        },
+        "cons":{
+            "type":"string"
+        },
+        "name":{
+            "type":"string"
+        }
+    },
+    "required":["key_themes","summery","sentiment"]
+}
